@@ -26,6 +26,8 @@
 - Mise en place du conteneur `Etape 1`
 - Vérification du bon fonctionnement
 - Création d'un script d'installation
+- Guide d'installation `Etape 1` [GuideInstallation](https://github.com/Iziram/SAE501/blob/main/GuideInstallation.md)
+- Documentation du script d'installation
 
 ## Consignes
 
