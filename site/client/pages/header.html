@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Jawelry
+  </title>
+  <meta name="description" content="Le site marchant leader des bijoux.">
+  <link rel="icon" href="client/images/logo.ico" type="image/icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+  <!-- Ajouts des framework css utilisées  -->
+    <!-- MaterializeCss -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- AnimateCss -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- NoUISliderCss -->
+  <link rel="stylesheet" href="client/extras/nouislider.min.css">
+
+
+  <!-- Ajouts des framework JS utilisées  -->
+    <!-- MaterializeCss -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- SweatAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.14/dist/sweetalert2.all.min.js"></script>
+    <!-- NoUISliderCss -->
+  <script src="client/extras/nouislider.min.js"></script>
+
+  <!-- Ajout des scripts(personnels) essentiels à toutes les pages -->
+  <script src="client/scripts/ajax.js"></script>
+  <script src="client/scripts/base.js"></script>
+
+  <!-- Ajout du css(personnel) pour l'affichage des pages -->
+  <link rel="stylesheet" href="client/styles/main.css">
+</head>
+
+<body>
+  <!-- Gestion de la barre de 'navigation' -->
+  <nav class="navbar-fixed purple lighten-2">
+
+    <div class="nav-wrapper px">
+      <a href="#" class="brand-logo center">Jawelry</a>
+
+      <ul class="left valign-wrapper purple lighten-3">
+        <li id="searchLI"></li>
+      </ul>
+      <ul class="right valign-wrapper purple lighten-3">
+        <li id="profileLI"></li>
+      </ul>
+
+    </div>
+    <!-- On utilise le script populateNavBarIcon pour dynamiquement placer les icones dans la navbar
+      - Icone du profil pour chaque page autre que connexion.php et 404.php
+      - Icone de recherche pour la page index.php
+    -->
+    <script>
+      populateNavBarIcons();
+    </script>
+  </nav>

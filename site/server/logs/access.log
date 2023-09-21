@@ -1,0 +1,73 @@
+# [day-month-year] @ip -> [connexion réussie / connexion échouée]
+[16-05-2022 18:49:45] 127.0.0.1 Connexion refusée pour l'utilisateur : 't.t@f' 
+[16-05-2022 19:03:34] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[16-05-2022 19:06:44] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[17-05-2022 08:03:58] 127.0.0.1 Connexion refusée pour l'utilisateur : 'test@iziram.fr' 
+[17-05-2022 08:04:10] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[17-05-2022 11:39:47] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[17-05-2022 11:41:17] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[18-05-2022 10:11:46] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[20-05-2022 15:22:56] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[20-05-2022 15:24:04] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[20-05-2022 15:34:53] ::1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[20-05-2022 15:57:27] ::1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[22-05-2022 08:49:28] 127.0.0.1 Connexion refusée pour l'utilisateur : 'admin@admin.fr' 
+[22-05-2022 08:59:11] 127.0.0.1 Connexion réussie pour l'utilisateur : 'uti@uti.fr' [statut :utilisateur] 
+[22-05-2022 09:00:43] ::1 Connexion réussie pour l'utilisateur : 'uti@uti.fr' [statut :utilisateur] 
+[22-05-2022 09:02:18] 127.0.0.1 Connexion réussie pour l'utilisateur : 'uti@uti.fr' [statut :utilisateur] 
+[22-05-2022 09:05:00] 127.0.0.1 Connexion refusée pour l'utilisateur : 'uti@uti.fr' 
+[22-05-2022 09:05:12] 127.0.0.1 Connexion réussie pour l'utilisateur : 'uti@uti.fr' [statut :utilisateur] 
+[22-05-2022 09:55:54] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 09:56:13] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 09:57:35] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 09:58:49] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 10:01:10] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 10:02:40] ::1 Connexion refusée pour l'utilisateur : Benoit&amp; 
+[22-05-2022 10:02:44] ::1 Connexion refusée pour l'utilisateur : Benoit&amp; 
+[22-05-2022 10:03:56] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 10:04:58] ::1 Connexion réussie pour l'utilisateur : 'Benoit&' [statut :utilisateur] 
+[22-05-2022 10:05:55] ::1 Connexion refusée pour l'utilisateur : 'Benoit&?><h1>hello</h1<?php' 
+[22-05-2022 10:06:45] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;?&gt;&lt;h1&gt;hello&lt;/h1&lt;?php' 
+[22-05-2022 10:07:02] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 10:09:05] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;' 
+[22-05-2022 10:11:04] ::1 Connexion réussie pour l'utilisateur : 'Benoit&' [statut :utilisateur] 
+[22-05-2022 10:11:18] ::1 Connexion refusée pour l'utilisateur : 'Benoit&?><h1>hello</h1<?php' 
+[22-05-2022 10:14:16] ::1 Connexion refusée pour l'utilisateur : 'Benoit&?><h1>hello</h1<?php' 
+[22-05-2022 10:14:27] ::1 Connexion refusée pour l'utilisateur : 'Benoit&' 
+[22-05-2022 10:14:42] ::1 Connexion réussie pour l'utilisateur : 'Benoit&' [statut :utilisateur] 
+[22-05-2022 10:14:54] ::1 Connexion refusée pour l'utilisateur : 'Benoit&?><h1>hello</h1<?php' 
+[22-05-2022 10:16:00] ::1 Connexion réussie pour l'utilisateur : 'Benoit&amp;' [statut :utilisateur] 
+[22-05-2022 10:16:10] ::1 Connexion refusée pour l'utilisateur : 'Benoit&amp;?&gt;&lt;h1&gt;hello&lt;/h1&lt;?php' 
+[22-05-2022 10:16:48] ::1 Connexion refusée pour l'utilisateur : 'Admin*' 
+[22-05-2022 10:17:17] ::1 Connexion refusée pour l'utilisateur : 'Admin*' 
+[22-05-2022 10:17:24] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[22-05-2022 10:21:05] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[22-05-2022 11:45:21] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[22-05-2022 12:17:53] ::1 Connexion refusée pour l'utilisateur : 'Admin*' 
+[23-05-2022 15:14:11] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[23-05-2022 15:18:46] 127.0.0.1 Connexion refusée pour l'utilisateur : 'Benoit*' 
+[23-05-2022 15:19:05] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[23-05-2022 15:57:41] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[23-05-2022 17:18:06] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[24-05-2022 11:40:36] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[24-05-2022 11:43:12] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[25-05-2022 22:17:36] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[26-05-2022 08:38:34] ::1 Connexion refusée pour l'utilisateur : 'Benoit*' 
+[26-05-2022 08:39:07] ::1 Connexion réussie pour l'utilisateur : 'Benoit&amp;' [statut :utilisateur] 
+[26-05-2022 08:40:09] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[26-05-2022 09:45:59] ::1 Connexion réussie pour l'utilisateur : 'Benoit&amp;' [statut :utilisateur] 
+[26-05-2022 20:35:28] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[29-05-2022 17:57:10] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :] 
+[29-05-2022 17:59:56] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :] 
+[29-05-2022 18:00:53] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :] 
+[29-05-2022 18:01:31] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[08-06-2022 20:13:33] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[08-06-2022 22:21:17] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[09-06-2022 08:00:21] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[09-06-2022 08:50:37] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[09-06-2022 10:04:55] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[09-06-2022 10:11:30] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[12-06-2022 19:38:03] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[12-06-2022 19:53:24] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[14-06-2022 08:19:24] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[14-06-2022 09:53:22] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
