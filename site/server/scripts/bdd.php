@@ -16,10 +16,14 @@
 function callDatabase($sql, $select = true, $unique = false, $auth = false)
 {
     //Connexion à la base de donnée
-    if ($auth) {
-        $db = new PDO('sqlite:' . $_SERVER['DOCUMENT_ROOT'] . '/server/bdd/auth.db');
+
+    $login = "iziram";
+    $password = 1234;
+
+    if (!$auth) {
+        $db = new PDO('pgsql:host=501_etape_2_psql;port=5432;dbname=jawelry;', $login, $password);
     } else {
-        $db = new PDO('sqlite:' . $_SERVER['DOCUMENT_ROOT'] . '/server/bdd/data.db');
+        $db = new PDO('mysql:host=501_etape_2_mariadb;port=3306;dbname=jawelry;', $login, $password);
     }
 
     //Initialisation de la variable res à Faux

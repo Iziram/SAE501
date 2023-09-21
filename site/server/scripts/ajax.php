@@ -48,12 +48,14 @@ if ($contentType === "application/json") {
                 //Ici on met à jour un produit, on récupère alors un objet json correspondant au produit qu'on décode
                 $content = $decoded["product"];
 
+                $promo = $content["promo"];
+
                 //On génère une requête sql grâce à l'objet JSON
                 $sql = "update Produits set NomP = " . quote($content["nom"]) .
                     ", Prix = " . $content["prix"] . ", type = " . quote($content["type"]) .
                     ", image = " . quote($content["img"]) .
                     ", materiaux = " . quote($content["mat"]) . ", Promo = " .
-                    $content["promo"] . " where idP = " . $content["id"];
+                    "'$promo'" . "where idP = " . $content["id"];
 
                 $ans = callDatabase(
                     $sql,
