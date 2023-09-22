@@ -1,7 +1,7 @@
 CREATE TABLE Produits (
     idP SERIAL,
     NomP TEXT,
-    Prix INTEGER,
+    Prix NUMERIC,
     type TEXT DEFAULT 'Bague',
     materiaux TEXT DEFAULT 'Or',
     Promo BOOLEAN DEFAULT FALSE,

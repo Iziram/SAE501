@@ -9,7 +9,7 @@ function connexionToApp($login, $pass)
     $qlogin = quote($login);
     $qpass = quote($pass);
     //On écrit la requête sql
-    $sql = "select statut from Comptes where login = " . $qlogin . " and pass = " . $qpass;
+    $sql = "select statut from Comptes where login = " . $qlogin . " and passwd = " . $qpass;
     //On appelle la base de donnée en donnant :
     $res = callDatabase(
         $sql, // requête sql

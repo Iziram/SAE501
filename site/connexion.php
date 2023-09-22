@@ -13,67 +13,67 @@ if (!empty($_POST) && isset($_POST["login"]) && isset($_POST["pass"])) {
     if ($res) {
         //Si le couple login/mdp est correcte alors on affiche un message et on redirige vers Index.php
 ?>
-<script>
-Swal.fire({
-    title: "Vous êtes désormais connecté.",
-    text: "Vous allez être redirigé sur le site",
-    icon: "success",
-    button: "OK",
-    timer: 5000,
-    timerProgressBar: true,
-    showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-    }
-}).then((value) => {
-    window.location = "index.php";
-});
-</script>
-<?php
+        <script>
+            Swal.fire({
+                title: "Vous êtes désormais connecté.",
+                text: "Vous allez être redirigé sur le site",
+                icon: "success",
+                button: "OK",
+                timer: 5000,
+                timerProgressBar: true,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            }).then((value) => {
+                window.location = "index.php";
+            });
+        </script>
+    <?php
     } else {
         //Sinon on indique une erreur (login/mdp incorrect)
     ?>
-<script>
-Swal.fire({
-    title: "Connexion Refusée",
-    text: "Le couple identifiant / mot de passe n'existe pas ou est incorrecte.",
-    icon: "error",
-    button: "J'ai compris",
-    timer: 5000,
-    timerProgressBar: true,
-    showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-    }
-});
-</script>
-<?php
+        <script>
+            Swal.fire({
+                title: "Connexion Refusée",
+                text: "Le couple identifiant / mot de passe n'existe pas ou est incorrecte.",
+                icon: "error",
+                button: "J'ai compris",
+                timer: 5000,
+                timerProgressBar: true,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+        </script>
+    <?php
     }
 } else if (!empty($_SESSION) && isset($_SESSION["login"])) {
     //On vérifie le cas où l'utilisateur est déjà connecté, si c'est le cas alors on le redirige directement vers index.php
     ?>
-<script>
-Swal.fire({
-    title: "Vous êtes déjà connecté.",
-    text: "Vous allez être redirigé sur le site",
-    icon: "success",
-    button: "OK",
-    timer: 5000,
-    timerProgressBar: true,
-    showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-    }
-}).then((value) => {
-    window.location = "index.php";
-});
-</script>
+    <script>
+        Swal.fire({
+            title: "Vous êtes déjà connecté.",
+            text: "Vous allez être redirigé sur le site",
+            icon: "success",
+            button: "OK",
+            timer: 5000,
+            timerProgressBar: true,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        }).then((value) => {
+            window.location = "index.php";
+        });
+    </script>
 <?php
 }
 ?>
@@ -88,8 +88,7 @@ Swal.fire({
 
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" onsubmit="return testConnectForm()">
             <label for="login">Login: </label>
-            <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required
-                onkeyup="verifierLogin(this.value)" />
+            <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required onkeyup="verifierLogin(this.value)" />
 
             <!-- Gestion de la progresse bar (en cas de login non conforme) par défaut elle n'est pas affichée -->
             <div id="progressBar_login_div" class="progress hid progressBar">

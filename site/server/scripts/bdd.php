@@ -21,9 +21,9 @@ function callDatabase($sql, $select = true, $unique = false, $auth = false)
     $password = 1234;
 
     if (!$auth) {
-        $db = new PDO('pgsql:host=501_etape_2_psql;port=5432;dbname=jawelry;', $login, $password);
+        $db = new PDO('pgsql:host=psql;port=5432;dbname=jawelry;', $login, $password);
     } else {
-        $db = new PDO('mysql:host=501_etape_2_mariadb;port=3306;dbname=jawelry;', $login, $password);
+        $db = new PDO('mysql:host=mariadb;port=3306;dbname=jawelry;', $login, $password);
     }
 
     //Initialisation de la variable res à Faux

@@ -1,7 +1,7 @@
 USE jawelry;
 CREATE TABLE IF NOT EXISTS Comptes (
     login varchar(128),
-    pass TEXT,
+    passwd TEXT,
     statut varchar(64),
     PRIMARY KEY(login)
 );
