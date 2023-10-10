@@ -2,3 +2,6 @@
 *.session.sql
 Sujet-SAE_ETU/
 .DS_STORE
+
+__pycache__/*
+*.pyc

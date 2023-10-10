@@ -1,6 +1,6 @@
 function buildNetwork(){
     # Création d'un réseau pour y placer les conteneurs
-    docker network create --driver bridge 501_etape_2_network || echo "Réseau déjà installé"
+    docker network create --driver bridge 501_etape_4_network || echo "Réseau déjà installé"
 }
 
 # Fonction de création du conteneur du site web
@@ -12,15 +12,15 @@ function buildSiteContainer (){
     terminal=$1
 
     # On construit l'image du conteneur à partir du dockerfile (situé à la racine du repo)
-    docker build -f ./dockerfiles/site.dockerfile -t 501_etape_2_site .
+    docker build -f ./dockerfiles/site.dockerfile -t 501_etape_4_site .
 
     # Une fois l'image créée on lance le conteneur avec l'image et sur le bon port
-    docker run -dit --name 501_etape_2_site -p $port:80 --network 501_etape_2_network 501_etape_2_site
+    docker run -dit --name 501_etape_4_site -p $port:80 --network 501_etape_4_network 501_etape_4_site
 
     if $terminal
     then
         # On lie le terminal au conteneur.
-        docker exec -it 501_etape_2_site bash;
+        docker exec -it 501_etape_4_site bash;
     fi
 }
 
@@ -31,10 +31,10 @@ function buildPSQLContainer (){
     port=$1
 
     # On construit l'image du conteneur à partir du dockerfile (situé à la racine du repo)
-    docker build -f ./dockerfiles/psql.dockerfile -t 501_etape_2_psql .
+    docker build -f ./dockerfiles/psql.dockerfile -t 501_etape_4_psql .
 
     # Une fois l'image créée on lance le conteneur avec l'image et sur le bon port
-    docker run -tdi --name 501_etape_2_psql -p $port:5432 --network 501_etape_2_network 501_etape_2_psql
+    docker run -tdi --name 501_etape_4_psql -p $port:5432 --network 501_etape_4_network 501_etape_4_psql
 }
 
 # Fonction de création du conteneur de MariaDB
@@ -44,10 +44,10 @@ function buildMariaDBContainer (){
     port=$1
 
     # On construit l'image du conteneur à partir du dockerfile (situé à la racine du repo)
-    docker build -f ./dockerfiles/mariadb.dockerfile -t 501_etape_2_mariadb .
+    docker build -f ./dockerfiles/mariadb.dockerfile -t 501_etape_4_mariadb .
 
     # Une fois l'image créée on lance le conteneur avec l'image et sur le bon port
-    docker run -tdi --name 501_etape_2_mariadb -p $port:3306 --network 501_etape_2_network 501_etape_2_mariadb 
+    docker run -tdi --name 501_etape_4_mariadb -p $port:3306 --network 501_etape_4_network 501_etape_4_mariadb 
 }
 
 function buildAll(){

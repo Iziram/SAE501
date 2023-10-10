@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from . import crud, models, schemas
 from .database import SessionDB
 
+from .token import verifierTokenAccess
+
 app = FastAPI()
 
 
@@ -13,6 +15,19 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def is_admin(func):
+    def wrapper(*args, **kwargs):
+        payload = kwargs.get("payload")
+        if payload is None or "statut" not in payload or payload["statut"] != "admin":
+            raise HTTPException(
+                status_code=403,
+                detail="Vous ne possédez pas les droits nécessaires pour cette action",
+            )
+        return func(*args, **kwargs)
+
+    return wrapper
 
 
 @app.get("/produits", response_model=list[schemas.Produit])
@@ -29,13 +44,23 @@ def get_produit(idP: int, db: Session = Depends(get_db)):
 
 
 @app.post("/produits", response_model=schemas.Produit)
-def create_produit(produit: schemas.Produit, db: Session = Depends(get_db)):
+@is_admin
+def create_produit(
+    produit: schemas.Produit,
+    db: Session = Depends(get_db),
+    payload=Depends(verifierTokenAccess),
+):
     db_product = crud.create_produit(db, produit=produit)
     return schemas.Produit.from_orm(db_product)
 
 
 @app.put("/produits", response_model=schemas.Produit)
-def update_produit(produit: schemas.Produit, db: Session = Depends(get_db)):
+@is_admin
+def update_produit(
+    produit: schemas.Produit,
+    db: Session = Depends(get_db),
+    payload=Depends(verifierTokenAccess),
+):
     db_product = crud.update_produit(db, produit=produit)
     if not db_product:
         raise HTTPException(status_code=404, detail="Produit inconnu")
@@ -43,7 +68,12 @@ def update_produit(produit: schemas.Produit, db: Session = Depends(get_db)):
 
 
 @app.delete("/produits/{idP}")
-def delete_produit(idP: int, db: Session = Depends(get_db)):
+@is_admin
+def delete_produit(
+    idP: int,
+    db: Session = Depends(get_db),
+    payload=Depends(verifierTokenAccess),
+):
     db_product = crud.delete_produit(db, idP)
     if not db_product:
         raise HTTPException(status_code=404, detail="Produit inconnu")
