@@ -28,7 +28,7 @@ def verifierTokenAccess(credits: HTTPAuthorizationCredentials = Depends(security
             raise HTTPException(
                 status_code=401, detail="Could not validate credentials"
             )
-        print(payload["login"], payload["statut"])
+        print(payload["sub"], payload["statut"])
         return payload  # on retourne le payload
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
