@@ -7,7 +7,7 @@
 //On récupère le content type de la requête.
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 //On inclue les fonctions liées à la base de donnée
-include $_SERVER['DOCUMENT_ROOT'] . '/server/scripts/bdd.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/server/scripts/api.php';
 
 //Si le content type est bien en JSON (type d'objet envoyé en requête)
 if ($contentType === "application/json") {
@@ -28,7 +28,7 @@ if ($contentType === "application/json") {
 
             case "getProducts":
                 //On récupère tous les produits 
-                $ans = callDatabase("select * from Produits order by NomP ASC");
+                $ans = curlGET()
                 if ($ans)
                     answerCreator($ans, false);
                 else

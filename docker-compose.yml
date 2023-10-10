@@ -8,6 +8,8 @@ services:
     links:
       - "psql:psql"
       - "mariadb:mariadb"
+      - "api-data:api-data"
+      - "api-auth:api-auth"
     volumes:
       - ./site:/var/www/html
   api-data:

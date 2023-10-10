@@ -1,31 +1,24 @@
 <?php
 include("server/scripts/bdd.php");
+include("server/scripts/api.php");
 /**
  * Fonction qui en à l'aide d'un couple login / mdp renvoie Vrai si l'utilisateur peut se connecter sinon Faux
  */
 function connexionToApp($login, $pass)
 {
     //On protège la base de donnée d'une injection sql 
-    $qlogin = quote($login);
-    $qpass = quote($pass);
-    //On écrit la requête sql
-    $sql = "select statut from Comptes where login = " . $qlogin . " and passwd = " . $qpass;
-    //On appelle la base de donnée en donnant :
-    $res = callDatabase(
-        $sql, // requête sql
-        true, // Est-ce que c'est une requête select ?
-        true, // Le retour est il unique ?
-        true, // Est-ce qu'on se connecte à la bdd d'auth
-    );
+    $res = callAuthApi("/auth/token");
+
+
     //Si la réponse est vraie alors on créer une session et on écrit dans les log la bonne connexion puis on renvoit Vrai
     if ($res) {
         $_SESSION["login"] = $login;
         $_SESSION["statut"] = $res["statut"];
-        writeLog("Connexion réussie pour l'utilisateur : $qlogin [statut :" . $res["statut"] . "]");
+        writeLog("Connexion réussie pour l'utilisateur : $login [statut :" . $res["statut"] . "]");
         return true;
     }
     //Sinon on écrit une erreur dans le fichier de log et on renvoie faux
-    writeLog("Connexion refusée pour l'utilisateur : $qlogin");
+    writeLog("Connexion refusée pour l'utilisateur : $login");
 
     return false;
 }
