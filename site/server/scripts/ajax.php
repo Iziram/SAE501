@@ -28,7 +28,7 @@ if ($contentType === "application/json") {
 
             case "getProducts":
                 //On récupère tous les produits 
-                $ans = curlGET()
+                $ans = callDataApi("/products");
                 if ($ans)
                     answerCreator($ans, false);
                 else

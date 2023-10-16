@@ -1,5 +1,5 @@
 # Change default directory page
-DirectoryIndex connexion.php
+DirectoryIndex index.php
 
 # Prevent viewing of .htaccess file
 <Files .htaccess>
