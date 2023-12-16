@@ -7,14 +7,24 @@ include("server/scripts/api.php");
 function connexionToApp($login, $pass)
 {
     //On protège la base de donnée d'une injection sql 
-    $res = callAuthApi("/auth/token");
-
+    $credits = [
+        "login" => $login,
+        "passwd" => $pass
+    ];
+    $res = callAuthApi("/auth/token?", $credits, null, "POST");
 
     //Si la réponse est vraie alors on créer une session et on écrit dans les log la bonne connexion puis on renvoit Vrai
-    if ($res) {
+    if ($res["status"] == 200) {
+        //On récupère les infos du token
+        $rep = callAuthApi("/auth/test", null, $res["response"]["access_token"], "GET");
+        $payload = $rep["response"]["payload"];
+
+        //On met à jour la session PHP
         $_SESSION["login"] = $login;
-        $_SESSION["statut"] = $res["statut"];
-        writeLog("Connexion réussie pour l'utilisateur : $login [statut :" . $res["statut"] . "]");
+        $_SESSION["statut"] = $payload["statut"];
+        $_SESSION["credits"] = $credits;
+
+        writeLog("Connexion réussie pour l'utilisateur : $login [statut :" . $payload["statut"] . "]");
         return true;
     }
     //Sinon on écrit une erreur dans le fichier de log et on renvoie faux
@@ -28,22 +38,23 @@ function connexionToApp($login, $pass)
  */
 function addProduct($nom, $prix, $promo, $type, $mat, $path)
 {
-    //On protège la base de donnée d'une injection sql 
-    $qnom = quote($nom);
-    $qtype = quote($type);
-    $qmat = quote($mat);
-    $qpath = quote($path);
-    $qpromo = $promo == "on" ? "'1'" : "'0'";
-    //On écrit la requête sql
-    $sql = "insert into Produits (NomP, Prix, Promo, type, materiaux, image) values ($qnom, $prix, $qpromo, $qtype, $qmat, $qpath)";
-    //On appelle la base de donnée
-    $res = callDatabase(
-        $sql,
-        false,
-        true
-    );
+    $promo = $promo == "on";
+    //On écrit créer un objet pour envoyer à l'api
+
+    $produit = [
+        "nomp" => $nom,
+        "prix" => $prix,
+        "image" => $path,
+        "type" => $type,
+        "materiaux" => $mat,
+        "promo" => $promo
+    ];
+
+    $res = callDataApi("/produits", $produit, null, "POST");
+
+
     //Si on a une réponse vrai alors on affiche que le produit à bien été ajouté
-    if ($res) {
+    if ($res["status"] == 200) {
 ?>
         <script>
             Swal.fire({
@@ -294,8 +305,8 @@ function generateDynamicProductList()
         dynamicFilter();
         //Récupération des produits et affichage des produits filtrés
         fullProducts().then((value) => {
-            showProducts(value);
-            showProducts(value, 'noFiltre');
+            showProducts(value.response);
+            showProducts(value.response, 'noFiltre');
         }, (value) => console.error(value))
 
 

@@ -5,6 +5,7 @@ from . import crud, models, schemas
 from .database import SessionDB
 
 from .token import verifierTokenAccess
+from json import dumps
 
 app = FastAPI()
 
@@ -28,6 +29,11 @@ def get_produit(idP: int, db: Session = Depends(get_db)):
     if db_product is None:
         raise HTTPException(status_code=404, detail="Produit inconnu")
     return schemas.Produit.from_orm(db_product)
+
+
+@app.get("/catego_produit")
+def get_catego_produit(db: Session = Depends(get_db)):
+    return crud.get_catego_produits(db)
 
 
 @app.post("/produits", response_model=schemas.Produit)
