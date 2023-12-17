@@ -89,8 +89,8 @@ function generateModificationForm(idP) {
       cat.then(
         function (value) {
           //On modifie les array de façon à avoir juste les types/matériaux et à les avoir par ordre alphanumérique
-          const types = value.types.map((el) => el["type"]).sort();
-          const mats = value.materiaux.map((el) => el["materiaux"]).sort();
+          const types = value.types.sort();
+          const mats = value.materiaux.sort();
           //Pour chaque type on ajoute une option avec comme value le type, comme affichage le type, par défaut non sélectionné, et on vérifie si le type courant
           //est égal au type du produit qu'on affiche. Si c'est le cas alors l'option sera selectionnée sinon non.
           types.forEach((el) => {
