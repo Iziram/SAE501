@@ -48,7 +48,7 @@ function productCard(el, carousel = false) {
   }
   //On vérifie que le prix est présent dans l'objet, on le considère comme l'objet vide, qui est utilisé quand il n'y a pas de promotion disponible
   //dans les produits filtrés
-  if (el.prix) {
+  if (el.hasOwnProperty("prix")) {
     /**
          Génération du code html suivant :
 
@@ -141,6 +141,8 @@ function productCard(el, carousel = false) {
     card.appendChild(HTMLParser(html));
     col.appendChild(card);
   } else {
+    console.warn(":c", el);
+
     // si l'objet est vide alors on affiche une carte indiquant qu'il n'y a pas de promotion sur les produits filtrés
     const html = `
             <div class="card small">
@@ -169,9 +171,8 @@ function dynamicFilter() {
   const cat = productCategory();
   cat.then(
     (value) => {
-      //On filtre pour n'avoir que les types/materiaux et non des liste de "el["type"]"
-      const types = value.types.map((el) => el["type"]);
-      const mat = value.materiaux.map((el) => el["materiaux"]);
+      const types = value.types;
+      const mat = value.materiaux;
 
       //Gestion des checkbox des materiaux
 
@@ -219,8 +220,8 @@ function dynamicFilter() {
       //Gestion du slider des prix
 
       //On récupère le prix max et le prix min (en les arrondissant à 2 chiffres après la virgule)
-      const prixMax = parseFloat(value.prix.maxi.toFixed(2));
-      const prixMin = parseFloat(value.prix.mini.toFixed(2));
+      const prixMax = parseFloat(Number(value.prix.maxi).toFixed(2));
+      const prixMin = parseFloat(Number(value.prix.mini).toFixed(2));
 
       //On récupère l'élément html du slider
       const slider = document.getElementById("sliderPrix");
@@ -283,6 +284,7 @@ function filterProducts(slider) {
   products.then(
     function (value) {
       // On filtre la liste des produits
+      value = value.response;
       const filteredProducts = value.filter(function (el) {
         //Initialisation d'une variable t qui reste à true tant que l'élément correspond à tous les filtres
         let t = true;
@@ -314,7 +316,6 @@ function showProducts(prods, placer = "placer") {
   const place = document.getElementById(placer);
   //On la vide
   place.innerHTML = "";
-
   //Pour chaque produit dans le tableau de produits
   prods.forEach((el) => {
     //On ajoute dans la grille une carte représentant le produit

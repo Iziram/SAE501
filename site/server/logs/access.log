@@ -73,3 +73,14 @@
 [14-06-2022 09:53:22] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
 [22-09-2023 12:07:03] 192.168.65.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
 [22-09-2023 14:44:58] 192.168.65.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[17-12-2023 08:28:49] 192.168.65.1 Connexion réussie pour l'utilisateur : Benoit&amp; [statut :utilisateur] 
+[17-12-2023 08:32:05] 192.168.65.1 Connexion réussie pour l'utilisateur : Admin* [statut :admin] 
+[17-12-2023 08:34:42] 192.168.65.1 Connexion réussie pour l'utilisateur : Benoit&amp; [statut :utilisateur] 
+[17-12-2023 08:35:44] 192.168.65.1 Connexion réussie pour l'utilisateur : Admin* [statut :] 
+[17-12-2023 08:36:42] 192.168.65.1 Connexion réussie pour l'utilisateur : Admin&amp; [statut :] 
+[17-12-2023 08:38:28] 192.168.65.1 Connexion refusée pour l'utilisateur : Admin&amp; 
+[17-12-2023 08:38:37] 192.168.65.1 Connexion refusée pour l'utilisateur : Admin* 
+[17-12-2023 08:40:37] 192.168.65.1 Connexion réussie pour l'utilisateur : Admin* [statut :admin] 
+[17-12-2023 08:40:58] 192.168.65.1 Connexion refusée pour l'utilisateur : Benoit&amp; 
+[17-12-2023 08:41:19] 192.168.65.1 Connexion refusée pour l'utilisateur : Benoit&amp; 
+[17-12-2023 08:41:30] 192.168.65.1 Connexion réussie pour l'utilisateur : Admin* [statut :admin] 

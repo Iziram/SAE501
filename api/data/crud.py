@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import distinct, func
 from . import models, schemas, database
 from typing import Union
 
@@ -50,6 +51,29 @@ def get_produits(db: Session) -> list[models.Produit]:
         list[models.Produit]: Une liste de produits
     """
     return db.query(models.Produit).all()
+
+
+def get_catego_produits(db: Session) -> dict:
+    distinct_materiaux = db.query(distinct(models.Produit.materiaux)).all()
+    distinct_types = db.query(distinct(models.Produit.type)).all()
+    max_min_prix = db.query(
+        func.max(models.Produit.prix).label("maxi"),
+        func.min(models.Produit.prix).label("mini"),
+    ).one()
+
+    # Conversion des types en types Pythons simple
+    materiaux_list = [materiau[0] for materiau in distinct_materiaux]
+    types_list = [type_produit[0] for type_produit in distinct_types]
+    prix_dict = {
+        "maxi": float(max_min_prix.maxi) if max_min_prix.maxi is not None else None,
+        "mini": float(max_min_prix.mini) if max_min_prix.mini is not None else None,
+    }
+
+    return {
+        "types": types_list,
+        "materiaux": materiaux_list,
+        "prix": prix_dict,
+    }
 
 
 #  -- UPDATE --

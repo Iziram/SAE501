@@ -28,6 +28,11 @@ def get_produit(idP: int, db: Session = Depends(get_db)):
     return schemas.Produit.from_orm(db_product)
 
 
+@app.get("/catego_produit")
+def get_catego_produit(db: Session = Depends(get_db)):
+    return crud.get_catego_produits(db)
+
+
 @app.post("/produits", response_model=schemas.Produit)
 def create_produit(produit: schemas.Produit, db: Session = Depends(get_db)):
     db_product = crud.create_produit(db, produit=produit)

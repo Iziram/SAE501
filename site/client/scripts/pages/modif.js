@@ -8,6 +8,8 @@ function generateModificationForm(idP) {
 
   promise.then(
     (item) => {
+      //On récupère l'item dans la réponse json
+      item = item.response;
       //On défini un html template que l'on modifiera avec les informations du produit
       const html = `
         <div>
@@ -87,8 +89,8 @@ function generateModificationForm(idP) {
       cat.then(
         function (value) {
           //On modifie les array de façon à avoir juste les types/matériaux et à les avoir par ordre alphanumérique
-          const types = value.types.map((el) => el["type"]).sort();
-          const mats = value.materiaux.map((el) => el["materiaux"]).sort();
+          const types = value.types;
+          const mats = value.materiaux;
           //Pour chaque type on ajoute une option avec comme value le type, comme affichage le type, par défaut non sélectionné, et on vérifie si le type courant
           //est égal au type du produit qu'on affiche. Si c'est le cas alors l'option sera selectionnée sinon non.
           types.forEach((el) => {
@@ -224,7 +226,7 @@ function modificationProductList(selector = "") {
       const placer = document.getElementById("products");
       placer.innerHTML = "";
       //On récupère la liste des produits
-      const produits = json;
+      const produits = json.response;
 
       //On ajoute un option désactivée qui sert de placeholder en attendant que le client clique sur un produit
       const disabled = new Option("Produit à Modifier", "", true, true);

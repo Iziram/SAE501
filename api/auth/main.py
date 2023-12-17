@@ -17,4 +17,12 @@ def get_db():
 
 @app.post("/auth")
 def try_connection(user: schemas.Compte, db: Session = Depends(get_db)):
-    return crud.get_compte(db, user.login, user.passwd) is not None
+    user_logged: schemas.Compte = crud.get_compte(db, user.login, user.passwd)
+    if user_logged is None:
+        return HTTPException(status_code=403, detail="Invalid Credentials")
+
+    return {
+        "status_code": 200,
+        "login": user_logged.login,
+        "statut": user_logged.statut,
+    }
