@@ -1,0 +1,1 @@
+docker-compose -p "sae501_etape_4" up -d
