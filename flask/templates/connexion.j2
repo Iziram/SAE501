@@ -1,0 +1,78 @@
+{% extends "base.j2" %}
+
+{% block content %}
+
+{% if post %}
+{% if connected %}
+<script>
+    Swal.fire({
+        title: "Vous êtes désormais connecté.",
+        text: "Vous allez être redirigé sur le site",
+        icon: "success",
+        button: "OK",
+        timer: 5000,
+        timerProgressBar: true,
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((value) => {
+        window.location = "/";
+    });
+</script>
+{%else%}
+<script>
+    Swal.fire({
+        title: "Connexion Refusée",
+        text: "Le couple identifiant / mot de passe n'existe pas ou est incorrecte.",
+        icon: "error",
+        button: "J'ai compris",
+        timer: 5000,
+        timerProgressBar: true,
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    });
+</script>
+{% endif %}
+{% endif %}
+
+<script src="{{ url_for('static', filename='js/verifications.js') }}"></script>
+<!-- On génère un container qui est par défaut centré au milieu de la page et qui prend 87.2% de la hauteur de l'écran -->
+<div class="container valign-wrapper" style="height: 87.2vh;">
+
+    <!-- On affiche un container qui contient le formulaire de connexion -->
+    <div class="container z-depth-4" style="padding:1vw 1vw;border-radius:1rem;">
+        <h2 class="title center"><b>Connexion</b></h2>
+
+        <form action="" method="post" onsubmit="return testConnectForm()">
+            <label for="login">Login: </label>
+            <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required
+                onkeyup="verifierLogin(this.value)" />
+
+            <!-- Gestion de la progresse bar (en cas de login non conforme) par défaut elle n'est pas affichée -->
+            <div id="progressBar_login_div" class="progress hid progressBar">
+                <div id="progressBar_login_bar" class="determinate" style="width: 50%"></div>
+            </div>
+
+            <p id="progressBar_login_text" class="hid progressBar"></p>
+
+            <label for="pass">Mot de passe: </label>
+            <input type="password" name="pass" id="pass" required />
+
+            <br /><br />
+
+            <div class="row">
+                <input class="btn col s3 offset-s9 purple lighten-3 right" type="submit" value="Se connecter" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

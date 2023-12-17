@@ -88,7 +88,7 @@ function productCard(el, carousel = false) {
     );
     const img = document.createElement("img");
     img.classList.add("activator", "pdtImg");
-    img.src = "server/images/" + el.image;
+    img.src = "image/" + el.image;
     img.alt = "L'image n'a pas pu être chargée";
     cardImg.appendChild(img);
     card.appendChild(cardImg);

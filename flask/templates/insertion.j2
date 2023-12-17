@@ -1,0 +1,136 @@
+{% extends "base.j2" %}
+
+{% block content %}
+
+{{sidebar | safe}}
+<script src="{{ url_for('static', filename='js/products.js') }}"></script>
+
+{% if form.err %}
+<script>
+    Swal.fire({
+        title: "Malheur une erreur !",
+        text: "Vous n'avez pas correctement rempli le formulaire",
+        icon: "error",
+        button: "J'ai compris",
+        timer: 5000,
+        timerProgressBar: true,
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    });
+</script>
+{% endif %}
+{% if form.success is not defined %}
+{% elif form.success %}
+<script>
+    Swal.fire({
+        title: "Le produit a bien été ajouté",
+        icon: "success",
+        toast: true,
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        position: "top-end",
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    })
+</script>
+{%else%}
+<script>
+    Swal.fire({
+        title: "Le produit n'a pas pu être ajouté",
+        icon: "error",
+        toast: true,
+        timer: 5000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        position: "top-end",
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    })
+</script>
+{% endif %}
+
+
+<h1 class="center">Créer un nouveau produit</h1>
+
+<!-- Formualaire d'insertion -->
+<form class="container" action="" method="post">
+    <!-- Première ligne : Nom et Prix du produit -->
+    <div class="row">
+        <div class="input-field col s5">
+            <label for="nomPdt">Nom du produit : </label>
+            <input id="nomPdt" name="nom" type="text" placeholder="Collier avec Emeraude" value="{{form.nom}}" />
+        </div>
+        <div class="input-field col s5">
+            <label for="prixPdt">Prix du produit : </label>
+            <input id="prixPdt" name="prix" type="number" step="0.01" placeholder="6940.69" value="{{form.prix}}" />
+        </div>
+    </div>
+    <!-- Deuxième ligne : type et materiaux du produit -->
+    <div class="row">
+        <div class="input-field col s5">
+            <select id="selectType" name="selectType" class="selectable">
+                <option value="" disabled selected>Type de produit</option>
+                {% for type in form.cat.types %}
+                <option value="{{type}}">{{type}}</option>
+                {% endfor %}
+            </select>
+            <label>Type</label>
+        </div>
+        <div class="input-field col s5">
+            <select id="selectMat" name="selectMat" class="selectable">
+                <option value="" disabled selected>Type de Matériaux</option>
+                {% for mat in form.cat.materiaux %}
+                <option value="{{mat}}">{{mat}}</option>
+                {% endfor %}
+            </select>
+            <label>Matériaux</label>
+        </div>
+    </div>
+    <!-- Troisième ligne : Lien de l'image et case à cocher pour la promo -->
+    <div class="row">
+        <div class="input-field col s5">
+            <label for="filePath">Lien vers l'image : </label>
+            <input id="filePath" name="filePath" type="text" placeholder="image.jpg" value="{{form.img}}" />
+        </div>
+        <div class="input-field col s5 center">
+            <p>
+                <label>
+                    {% if form.promo %}
+                    <input type="checkbox" class="filled-in" name="promo" checked />
+                    {% else %}
+                    <input type="checkbox" class="filled-in" name="promo" />
+                    {% endif %}
+                    <span>En Promotion</span>
+                </label>
+            </p>
+        </div>
+    </div>
+    <!-- Pas de captcha pour le moment WIP -->
+    <!-- Bouton pour ajouter le produit -->
+    <div class="container row">
+        <button class="btn col s12 center-align purple">Ajouter le produit</button>
+    </div>
+</form>
+
+<!-- Initilialisation du javascript qui gère les select de MaterializeCss -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let elems = document.querySelectorAll('.selectable')
+        M.FormSelect.init(elems);
+    });
+</script>
+
+{% endblock content %}

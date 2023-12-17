@@ -1,0 +1,97 @@
+{% extends "base.j2" %}
+
+{% block content %}
+
+<h1 class="center-align">Liste des produits</h1>
+
+<script src="{{ url_for('static', filename='js/products.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/index.js') }}"></script>
+
+{{sidebar | safe }}
+
+<!-- HTML du sidenav du panel de filtrage , avec aucune valeur dedans (ajoutées plus tard avec du js)-->
+<ul id="searchSlide" class="sidenav">
+    <li style="height: 25%;">
+    </li>
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <!-- Liste de case à cocher pour les types -->
+            <li>
+                <a class="collapsible-header">Type<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul id="type">
+
+                    </ul>
+                </div>
+            </li>
+            <!-- Liste de case à cocher pour les matériaux -->
+            <li>
+                <a class="collapsible-header">Matériaux<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul id="mat">
+
+                    </ul>
+                </div>
+            </li>
+            <!-- Slider pour les prix (avec min et max) -->
+            <li>
+                <a class="collapsible-header">Prix<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li class="container center">
+                            <br>
+                            <div id="sliderPrix" class="slider-round"></div>
+                            <span id="min" class="hoverable">A</span><span>|</span><span id="max"
+                                class="hoverable">B</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- Container qui contiendra le carousel des promotions -->
+<hr class="container">
+<div id="carouselPlacer" class="container">
+    <h2 class="title center">Promotions</h2>
+    <div class="carousel" id="carousel">
+
+    </div>
+</div>
+
+<hr class="container">
+<h2 class="title center">Tous les produits (filtrés)</h2>
+<!-- Container qui contiendra le tableau de produit filtré(ou non) -->
+<div class="row container" id="placer">
+
+</div>
+<hr class="container">
+<h2 class="title center">Tous les produits (non filtrés)</h2>
+<!-- Container qui contiendra le tableau de produit filtré(ou non) -->
+<div class="row container" id="noFiltre">
+
+</div>
+<script>
+    // Initialisation du javascript lié au sidenav
+    var elems = document.getElementById('searchSlide');
+    var instances = M.Sidenav.init(elems);
+    var collapsibleElem = document.querySelector('.collapsible');
+    var collapsibleInstance = M.Collapsible.init(collapsibleElem);
+
+    //Mise à jour du panel de filtrage avec les types, produits et prix dynamique
+    dynamicFilter();
+    //Récupération des produits et affichage des produits filtrés
+    fullProducts().then((value) => {
+        showProducts(value.response);
+        showProducts(value.response, 'noFiltre');
+    }, (value) => console.error(value))
+
+
+    //Changement du produit affiché par le carousel, toutes les 3 secondes
+    setInterval(() => {
+        const carousel = M.Carousel.getInstance(document.getElementById('carousel'));
+        carousel.next();
+    }, 3000)
+</script>
+
+{% endblock content %}

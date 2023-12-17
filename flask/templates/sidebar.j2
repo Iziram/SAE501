@@ -1,0 +1,40 @@
+<ul id="profil" class="sidenav">
+    <li style="height: 25%;">
+    </li>
+    <li>
+        <!-- On affiche le login et le statut -->
+        <div class="user-view center">
+            <a href="#email"><span class="dark-text email">
+                    {{login}}
+                </span></a>
+            <a href="#name"><span class="dark-text name">
+                    {{statut}}
+                </span></a>
+        </div>
+    </li>
+    <!-- On affiche un lien pour accéder à la page index.php -->
+    <li><a href="/"><i class="material-icons">home</i>Accueil</a></li>
+    {% if statut == "Administrateur" %}
+    <li><a href="/insertion"><i class="material-icons">add_box</i>Créer Nouveau Produit</a></li>
+    <li><a href="/modification"><i class="material-icons">edit</i>Modifier un Produit</a></li>
+    {% else %}
+    {% endif %}
+    <li>
+        <div class="divider"></div>
+    </li>
+    <!-- On affiche aussi un bouton déconnexion -->
+    <li>
+        <div class="center">
+            <a class="btn purple" href="/deconnexion"><i class="material-icons">logout</i>deconnexion</a>
+        </div>
+    </li>
+</ul>
+<!-- Initialisation du "sidenav" pour qu'il puisse sortir de la droite de l'écran -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elem = document.getElementById('profil');
+        var instances = M.Sidenav.init(elem, {
+            edge: "right"
+        });
+    });
+</script>

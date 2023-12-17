@@ -12,43 +12,14 @@ services:
   #     - "api-auth:api-auth"
   #   volumes:
   #     - ./site:/var/www/html
-  nginx-proxy:
-    build:
-      context: ./
-      dockerfile: ./dockerfiles/nginx.dockerfile
-    restart: always
-    links:
-      - "flask-app"
-    volumes:
-      - ./nginx/default.conf:/tmp/default.conf
-    environment: 
-      - FLASK_SERVER_ADDR=flask-app:8000
-    ports:
-      - "80:80"
-    depends_on:
-      - flask-app
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:80/health-check || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    command: /app/start.sh
   flask-app:
     build:
       context: ./
       dockerfile: ./dockerfiles/flask.dockerfile
-    restart: always
-    ports: 
-      - '8000:8000'
-    links:
-      - "api-data:api-data"
-      - "api-auth:api-auth"
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:8000/flask-health-check || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    command: gunicorn -w 3 -t 60 -b 0.0.0.0:8000 app:app
+    ports:
+      - "80:80"
+    volumes:
+      - ./flask:/code/app
   api-data:
     build:
       context: ./

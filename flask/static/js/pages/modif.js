@@ -166,13 +166,14 @@ function updateProduct() {
       // Lors de la réponse du serveur (Success) on récupère le contenu de la réponse
       // Et on génère un affichage HTML
       const prod = json.content;
+      console.warn(prod);
       const promo = prod.promo
         ? "l'article est en promotion"
         : "l'article n'est pas en promotion";
       const html = `
             <div class="center">
                 <div clas="row">
-                    <img class="col s6 img" alt="photo" src="server/images/${prod.img}"/>
+                    <img class="col s6 img" alt="photo" src="/image/${prod.image}"/>
                 </div>
                 <div class="row">
                     <h5 class="flow-text">${prod.nom}</h5>
@@ -185,7 +186,7 @@ function updateProduct() {
                         ${prod.type}
                     </p>
                     <p class="flow-text col s4">
-                        ${prod.mat}
+                        ${prod.materiaux}
                     </p>
                 </div>
                 <div class="row center">
